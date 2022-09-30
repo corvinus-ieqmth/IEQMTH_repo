@@ -35,6 +35,7 @@ namespace UserMaintenance
             this.button = new System.Windows.Forms.Button();
             this.textBoxTop = new System.Windows.Forms.TextBox();
             this.textBoxLow = new System.Windows.Forms.TextBox();
+            this.buttonToSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox
@@ -88,11 +89,22 @@ namespace UserMaintenance
             this.textBoxLow.Size = new System.Drawing.Size(177, 22);
             this.textBoxLow.TabIndex = 5;
             // 
+            // buttonToSave
+            // 
+            this.buttonToSave.Location = new System.Drawing.Point(397, 409);
+            this.buttonToSave.Name = "buttonToSave";
+            this.buttonToSave.Size = new System.Drawing.Size(201, 23);
+            this.buttonToSave.TabIndex = 6;
+            this.buttonToSave.Text = "button1";
+            this.buttonToSave.UseVisualStyleBackColor = true;
+            this.buttonToSave.Click += new System.EventHandler(this.buttonToSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 450);
+            this.Controls.Add(this.buttonToSave);
             this.Controls.Add(this.textBoxLow);
             this.Controls.Add(this.textBoxTop);
             this.Controls.Add(this.button);
@@ -114,6 +126,7 @@ namespace UserMaintenance
         private System.Windows.Forms.Button button;
         private System.Windows.Forms.TextBox textBoxTop;
         private System.Windows.Forms.TextBox textBoxLow;
+        private System.Windows.Forms.Button buttonToSave;
     }
 }
 
