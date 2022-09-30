@@ -36,6 +36,7 @@ namespace UserMaintenance
             this.textBoxTop = new System.Windows.Forms.TextBox();
             this.textBoxLow = new System.Windows.Forms.TextBox();
             this.buttonToSave = new System.Windows.Forms.Button();
+            this.buttonToDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox
@@ -46,6 +47,7 @@ namespace UserMaintenance
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(325, 420);
             this.listBox.TabIndex = 0;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // labelTop
             // 
@@ -99,11 +101,22 @@ namespace UserMaintenance
             this.buttonToSave.UseVisualStyleBackColor = true;
             this.buttonToSave.Click += new System.EventHandler(this.buttonToSave_Click);
             // 
+            // buttonToDelete
+            // 
+            this.buttonToDelete.Location = new System.Drawing.Point(421, 176);
+            this.buttonToDelete.Name = "buttonToDelete";
+            this.buttonToDelete.Size = new System.Drawing.Size(156, 23);
+            this.buttonToDelete.TabIndex = 7;
+            this.buttonToDelete.Text = "button1";
+            this.buttonToDelete.UseVisualStyleBackColor = true;
+            this.buttonToDelete.Click += new System.EventHandler(this.buttonToDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 450);
+            this.Controls.Add(this.buttonToDelete);
             this.Controls.Add(this.buttonToSave);
             this.Controls.Add(this.textBoxLow);
             this.Controls.Add(this.textBoxTop);
@@ -127,6 +140,7 @@ namespace UserMaintenance
         private System.Windows.Forms.TextBox textBoxTop;
         private System.Windows.Forms.TextBox textBoxLow;
         private System.Windows.Forms.Button buttonToSave;
+        private System.Windows.Forms.Button buttonToDelete;
     }
 }
 

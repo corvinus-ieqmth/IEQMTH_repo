@@ -22,6 +22,7 @@ namespace UserMaintenance
             labelLow.Text = Names.FirstName;
             button.Text = Names.Add;
             buttonToSave.Text = Names.WriteToFile;
+            buttonToDelete.Text = Names.DeleteRow;
 
             listBox.DataSource = users;
             listBox.ValueMember = "ID";
@@ -34,7 +35,7 @@ namespace UserMaintenance
             {
                 users.Add(new User($"{textBoxTop.Text} {textBoxLow.Text}"));
             }
-
+            EmptyTextBoxes();
         }
 
         List<string> instances = new List<string>();
@@ -51,6 +52,38 @@ namespace UserMaintenance
             }
 
             File.WriteAllLines(saveFileDialog.FileName, instances);
+        }
+
+        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selected = listBox.SelectedItem as User;
+            textBoxTop.Text = selected.FullName.Split(' ')[0];
+            textBoxLow.Text = selected.FullName.Split(' ')[1];
+
+        }
+
+        private void buttonToDelete_Click(object sender, EventArgs e)
+        {
+            if (listBox.SelectedItem != null)
+            {
+                var selectedUser = listBox.SelectedItem as User;
+                int counter = 0;
+                while (counter < users.Count && users[counter] != selectedUser)
+                {
+                    counter++;
+                }
+                if (users[counter] == selectedUser)
+                {
+                    users.Remove(users[counter]);
+                }
+            }
+            EmptyTextBoxes();
+        }
+
+        private void EmptyTextBoxes()
+        {
+            textBoxTop.Text = "";
+            textBoxLow.Text = "";
         }
     }
 }
