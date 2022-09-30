@@ -30,7 +30,7 @@ namespace UserMaintenance
         {
             if (textBoxTop.Text != "" && textBoxLow.Text != "")
             {
-                users.Add(new User(textBoxTop.Text, textBoxLow.Text));
+                users.Add(new User($"{textBoxTop.Text} {textBoxLow.Text}"));
             }
 
         }
