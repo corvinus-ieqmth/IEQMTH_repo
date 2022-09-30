@@ -19,12 +19,12 @@ namespace UserMaintenance.Entities
             
         }
 
-        public User( string firstName, string lastName, string fullName)
+        public User( string firstName, string lastName)
         {
             ID = Guid.NewGuid();
             FirstName = firstName;
             LastName = lastName;
-            _fullName = fullName;
+           
         }
     }
 }
