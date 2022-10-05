@@ -96,10 +96,34 @@ namespace ExcelExport
 
             }
 
-            xlSheet.get_Range(
+            Excel.Range dataRange = xlSheet.get_Range(
              GetCell(2, 1),
-             GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+             GetCell(1 + values.GetLength(0), values.GetLength(1)));
 
+            Excel.Range firstColumnRange = xlSheet.get_Range(
+             GetCell(2, 1),
+             GetCell(1 + values.GetLength(0),1));
+
+            Excel.Range lastColumnRange = xlSheet.get_Range(
+             GetCell(2, 9),
+             GetCell(1 + values.GetLength(0), 9));
+
+            dataRange.Value2 = values;
+
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            dataRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+            firstColumnRange.Interior.Color = Color.LightYellow;
+            firstColumnRange.Font.Bold = true;
+            lastColumnRange.Interior.Color = Color.LightGreen;
+            
         }
 
         private string GetCell(int x, int y)
