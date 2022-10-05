@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace ExcelExport
 {
@@ -16,10 +18,48 @@ namespace ExcelExport
 
         RealEstateEntities context = new RealEstateEntities();
 
+        Excel.Application xlApp;
+        Excel.Workbook xlWB;
+        Excel.Worksheet xlSheet;
+
         public Form1()
         {
             InitializeComponent();
             LoadData();
+            CreateExcel();
+        }
+
+        private void CreateExcel()
+        {
+            try
+            {
+                xlApp = new Excel.Application();
+                xlWB = xlApp.Workbooks.Add(Missing.Value);
+                xlSheet = xlWB.ActiveSheet;
+
+                CreateTable();
+
+                xlApp.Visible = true;
+                xlApp.UserControl = true;
+
+            }
+            catch (Exception ex)
+            {
+                string message = $"Error:{ex.Message} / {ex.Source}";
+                MessageBox.Show(message,"Hiba");
+
+                xlWB.Close(false, Type.Missing, Type.Missing);
+                xlApp.Quit();
+                xlWB = null;
+                xlApp = null;
+
+                
+            }
+        }
+
+        private void CreateTable()
+        {
+            throw new NotImplementedException();
         }
 
         private void LoadData()
