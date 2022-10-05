@@ -76,7 +76,7 @@ namespace ExcelExport
 
             for (int i = 1; i < headers.Length + 1; i++)
             {
-                xlSheet.Cells[1, i] = headers[0];
+                xlSheet.Cells[1, i] = headers[i-1];
             }
 
             int counter = 0;
@@ -90,7 +90,7 @@ namespace ExcelExport
                 values[counter, 5] = flat.NumberOfRooms;
                 values[counter, 6] = flat.FloorArea;
                 values[counter, 7] = flat.Price;
-                values[counter, 8] = "";
+                values[counter, 8] = $"={GetCell(counter+2,8 )} * 1000000 / {GetCell(counter + 2, 7)}";
 
                 counter++;
 
