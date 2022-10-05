@@ -70,7 +70,7 @@ namespace UserMaintenance {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Törlés.
+        ///   Looks up a localized string similar to Sor törlése.
         /// </summary>
         internal static string DeleteRow {
             get {

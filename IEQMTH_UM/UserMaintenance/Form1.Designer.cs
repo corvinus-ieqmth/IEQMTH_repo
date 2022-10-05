@@ -105,7 +105,7 @@ namespace UserMaintenance
             // 
             this.buttonToDelete.Location = new System.Drawing.Point(421, 176);
             this.buttonToDelete.Name = "buttonToDelete";
-            this.buttonToDelete.Size = new System.Drawing.Size(156, 23);
+            this.buttonToDelete.Size = new System.Drawing.Size(177, 60);
             this.buttonToDelete.TabIndex = 7;
             this.buttonToDelete.Text = "button1";
             this.buttonToDelete.UseVisualStyleBackColor = true;
