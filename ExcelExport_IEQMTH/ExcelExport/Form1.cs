@@ -12,9 +12,19 @@ namespace ExcelExport
 {
     public partial class Form1 : Form
     {
+        List<Flat> flats;
+
+        RealEstateEntities context = new RealEstateEntities();
+
         public Form1()
         {
             InitializeComponent();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            flats = context.Flats.ToList();
         }
     }
 }
