@@ -29,13 +29,36 @@ namespace Webservice
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dgw = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgw
+            // 
+            this.dgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgw.Location = new System.Drawing.Point(12, 12);
+            this.dgw.Name = "dgw";
+            this.dgw.RowHeadersWidth = 51;
+            this.dgw.RowTemplate.Height = 24;
+            this.dgw.Size = new System.Drawing.Size(407, 364);
+            this.dgw.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgw);
+            this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dgw)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dgw;
     }
 }
 

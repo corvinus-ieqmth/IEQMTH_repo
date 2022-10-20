@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Webservice.Entities;
 using Webservice.MNBServiceReference;
 
 namespace Webservice
@@ -14,12 +15,18 @@ namespace Webservice
     public partial class Form1 : Form
     {
         MNBArfolyamServiceSoapClient MNBArfolyamService = new MNBArfolyamServiceSoapClient();
+        BindingList<RateData> rates = new BindingList<RateData>();
+
 
         public Form1()
         {
             InitializeComponent();
 
             GetXCRates();
+
+            dgw.DataSource = rates;
+
+            
         }
 
         private void GetXCRates()
