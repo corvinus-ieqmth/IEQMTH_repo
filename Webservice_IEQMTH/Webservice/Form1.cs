@@ -18,16 +18,53 @@ namespace Webservice
     {
         MNBArfolyamServiceSoapClient MNBArfolyamService = new MNBArfolyamServiceSoapClient();
         BindingList<RateData> rates = new BindingList<RateData>();
-
+        BindingList<string> currencies = new BindingList<string>() ;
 
         public Form1()
+        {
+            rates.Clear();
+            string resultTickers = RefreshCurrencies();
+            ConvertFromCurrXML(resultTickers);
+            comboBox1.SelectedValue = "EUR";
+            //comboBox.DataSource = currencies;
+            RefreshData();
+        }
+
+        private void ConvertFromCurrXML(string result)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement item in xml.DocumentElement)
+            {
+                var childElement = (XmlElement)item.ChildNodes[0];
+                
+                if (childElement == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    currencies.Add(item.GetAttribute("curr"));
+                }
+            }
+        }
+
+        private string RefreshCurrencies()
+        {
+            GetCurrenciesRequestBody request = new GetCurrenciesRequestBody();
+           
+            var response = MNBArfolyamService.GetCurrencies(request);
+            return response.GetCurrenciesResult;
+        }
+
+        private void RefreshData()
         {
             InitializeComponent();
 
             string result = GetXCRates();
 
             dgw.DataSource = rates;
-
+            
             ConvertFromXML(result);
 
             chartRateData.DataSource = rates;
@@ -42,6 +79,14 @@ namespace Webservice
             series.XValueMember = "Date";
             series.YValueMembers = "Value";
             series.BorderWidth = 2;
+
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
         }
 
         private void ConvertFromXML(string result)
@@ -51,7 +96,12 @@ namespace Webservice
             foreach (XmlElement item in xml.DocumentElement)
             {
                 var childElement = (XmlElement)item.ChildNodes[0];
-                decimal val = decimal.Parse(childElement.GetAttribute("unit"));
+                decimal val = 0;
+                if (childElement != null)
+                {
+                     val = decimal.Parse(childElement.GetAttribute("unit"));
+
+                }
                 if (val != 0)
                 {
                     rates.Add(new RateData(DateTime.Parse(item.GetAttribute("date")), childElement.GetAttribute("curr"), decimal.Parse(childElement.InnerText)));
@@ -63,9 +113,29 @@ namespace Webservice
 
         private string GetXCRates()
         {
-            GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody() { currencyNames = "EUR", startDate = "2020-01-01", endDate = "2020-06-30" };
+            GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = comboBox.SelectedValue.ToString(),
+                startDate = dateFirst.Value.Date.ToString(),
+                endDate = dateLast.Value.Date.ToString() 
+            };
             var response = MNBArfolyamService.GetExchangeRates(request);
             return response.GetExchangeRatesResult;
+        }
+
+        private void dateFirst_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateLast_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
