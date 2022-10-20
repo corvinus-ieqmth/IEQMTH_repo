@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using Webservice.Entities;
 using Webservice.MNBServiceReference;
 
@@ -22,18 +23,35 @@ namespace Webservice
         {
             InitializeComponent();
 
-            GetXCRates();
+            string result = GetXCRates();
 
             dgw.DataSource = rates;
 
-            
+            ConvertFromXML(result);
         }
 
-        private void GetXCRates()
+        private void ConvertFromXML(string result)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement item in xml.DocumentElement)
+            {
+                var childElement = (XmlElement)item.ChildNodes[0];
+                decimal val = decimal.Parse(childElement.GetAttribute("unit"));
+                if (val != 0)
+                {
+                    rates.Add(new RateData(DateTime.Parse(item.GetAttribute("date")), childElement.GetAttribute("curr"), decimal.Parse(childElement.InnerText)));
+
+                }
+            }
+
+        }
+
+        private string GetXCRates()
         {
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody() { currencyNames = "EUR", startDate = "2020-01-01", endDate = "2020-06-30" };
             var response = MNBArfolyamService.GetExchangeRates(request);
-            var result = response.GetExchangeRatesResult;
+            return response.GetExchangeRatesResult;
         }
     }
 }
