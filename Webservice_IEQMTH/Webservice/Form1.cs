@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 using Webservice.Entities;
 using Webservice.MNBServiceReference;
@@ -28,6 +29,19 @@ namespace Webservice
             dgw.DataSource = rates;
 
             ConvertFromXML(result);
+
+            chartRateData.DataSource = rates;
+
+            CustomizeChart();
+        }
+
+        private void CustomizeChart()
+        {
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
         }
 
         private void ConvertFromXML(string result)
