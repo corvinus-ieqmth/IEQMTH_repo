@@ -123,7 +123,7 @@ namespace ExcelExport
             firstColumnRange.Interior.Color = Color.LightYellow;
             firstColumnRange.Font.Bold = true;
             lastColumnRange.Interior.Color = Color.LightGreen;
-            
+            lastColumnRange.NumberFormat = "#,###,###";
         }
 
         private string GetCell(int x, int y)
