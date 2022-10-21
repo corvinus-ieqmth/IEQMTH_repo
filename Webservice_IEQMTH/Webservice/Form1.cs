@@ -22,11 +22,18 @@ namespace Webservice
 
         public Form1()
         {
+
+            InitializeComponent();
+            
             rates.Clear();
+            foreach (var series in chartRateData.Series)
+            {
+                series.Points.Clear();
+            }
             string resultTickers = RefreshCurrencies();
             ConvertFromCurrXML(resultTickers);
-            comboBox1.SelectedValue = "EUR";
-            //comboBox.DataSource = currencies;
+            
+            comboBox.DataSource = currencies;
             RefreshData();
         }
 
@@ -36,16 +43,20 @@ namespace Webservice
             xml.LoadXml(result);
             foreach (XmlElement item in xml.DocumentElement)
             {
-                var childElement = (XmlElement)item.ChildNodes[0];
+                for (int i = 0; i < item.ChildNodes.Count; i++)
+                {
+                    var childElement = (XmlElement)item.ChildNodes[i];
+
+                    if (childElement == null)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        currencies.Add(childElement.InnerText);
+                    }
+                }
                 
-                if (childElement == null)
-                {
-                    continue;
-                }
-                else
-                {
-                    currencies.Add(item.GetAttribute("curr"));
-                }
             }
         }
 
@@ -59,7 +70,6 @@ namespace Webservice
 
         private void RefreshData()
         {
-            InitializeComponent();
 
             string result = GetXCRates();
 
@@ -68,6 +78,7 @@ namespace Webservice
             ConvertFromXML(result);
 
             chartRateData.DataSource = rates;
+            
 
             CustomizeChart();
         }
