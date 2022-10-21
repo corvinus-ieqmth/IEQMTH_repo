@@ -26,10 +26,7 @@ namespace Webservice
             InitializeComponent();
             
             rates.Clear();
-            foreach (var series in chartRateData.Series)
-            {
-                series.Points.Clear();
-            }
+            
             string resultTickers = RefreshCurrencies();
             ConvertFromCurrXML(resultTickers);
             
@@ -70,7 +67,10 @@ namespace Webservice
 
         private void RefreshData()
         {
-
+            foreach (var series in chartRateData.Series)
+            {
+                series.Points.Clear();
+            }
             string result = GetXCRates();
 
             dgw.DataSource = rates;
