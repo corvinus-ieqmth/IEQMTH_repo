@@ -71,7 +71,10 @@ namespace GiftFactory
 
         private void BallButton_Click(object sender, EventArgs e)
         {
-            Factory = new BallFactory();
+            Factory = new BallFactory
+            {
+                BallColor = colorButton.BackColor
+            };
         }
 
         private void DisplayNext()
@@ -82,6 +85,49 @@ namespace GiftFactory
             _nextToy.Top = label1.Top + label1.Height + 20;
             _nextToy.Left = label1.Left;
             Controls.Add(_nextToy);
+        }
+
+        private void colorButton_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
+
+        private void PresentButton_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                PresentColor = presentColor1Button.BackColor,
+                PresentRibbonColor = presentColor2Button.BackColor
+                
+            };
+        }
+
+        private void presentColor1Button_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
+
+        private void presentColor2Button_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
         }
     }
 }

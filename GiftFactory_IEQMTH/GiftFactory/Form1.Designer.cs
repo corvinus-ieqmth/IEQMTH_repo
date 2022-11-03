@@ -36,13 +36,17 @@ namespace GiftFactory
             this.CarButton = new System.Windows.Forms.Button();
             this.BallButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.PresentButton = new System.Windows.Forms.Button();
+            this.presentColor1Button = new System.Windows.Forms.Button();
+            this.presentColor2Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Location = new System.Drawing.Point(12, 205);
+            this.mainPanel.Location = new System.Drawing.Point(12, 257);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(776, 233);
+            this.mainPanel.Size = new System.Drawing.Size(776, 181);
             this.mainPanel.TabIndex = 0;
             // 
             // createTimer
@@ -80,18 +84,62 @@ namespace GiftFactory
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(344, 103);
+            this.label1.Location = new System.Drawing.Point(526, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Coming Next";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // colorButton
+            // 
+            this.colorButton.BackColor = System.Drawing.Color.Crimson;
+            this.colorButton.Location = new System.Drawing.Point(175, 149);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(126, 30);
+            this.colorButton.TabIndex = 4;
+            this.colorButton.UseVisualStyleBackColor = false;
+            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+            // 
+            // PresentButton
+            // 
+            this.PresentButton.Location = new System.Drawing.Point(324, 78);
+            this.PresentButton.Name = "PresentButton";
+            this.PresentButton.Size = new System.Drawing.Size(126, 65);
+            this.PresentButton.TabIndex = 5;
+            this.PresentButton.Text = "Present";
+            this.PresentButton.UseVisualStyleBackColor = true;
+            this.PresentButton.Click += new System.EventHandler(this.PresentButton_Click);
+            // 
+            // presentColor1Button
+            // 
+            this.presentColor1Button.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.presentColor1Button.Location = new System.Drawing.Point(324, 149);
+            this.presentColor1Button.Name = "presentColor1Button";
+            this.presentColor1Button.Size = new System.Drawing.Size(126, 30);
+            this.presentColor1Button.TabIndex = 6;
+            this.presentColor1Button.UseVisualStyleBackColor = false;
+            this.presentColor1Button.Click += new System.EventHandler(this.presentColor1Button_Click);
+            // 
+            // presentColor2Button
+            // 
+            this.presentColor2Button.BackColor = System.Drawing.Color.OliveDrab;
+            this.presentColor2Button.Location = new System.Drawing.Point(324, 185);
+            this.presentColor2Button.Name = "presentColor2Button";
+            this.presentColor2Button.Size = new System.Drawing.Size(126, 30);
+            this.presentColor2Button.TabIndex = 7;
+            this.presentColor2Button.UseVisualStyleBackColor = false;
+            this.presentColor2Button.Click += new System.EventHandler(this.presentColor2Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.presentColor2Button);
+            this.Controls.Add(this.presentColor1Button);
+            this.Controls.Add(this.PresentButton);
+            this.Controls.Add(this.colorButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BallButton);
             this.Controls.Add(this.CarButton);
@@ -111,6 +159,10 @@ namespace GiftFactory
         private System.Windows.Forms.Button CarButton;
         private System.Windows.Forms.Button BallButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.Button PresentButton;
+        private System.Windows.Forms.Button presentColor1Button;
+        private System.Windows.Forms.Button presentColor2Button;
     }
 }
 

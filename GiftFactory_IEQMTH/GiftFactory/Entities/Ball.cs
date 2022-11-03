@@ -19,6 +19,13 @@ namespace GiftFactory.Entities
 
         }
 
+        public SolidBrush BallColor { get; private set; }
+
+        public Ball(Color color)
+        {
+            BallColor = new SolidBrush(color);
+        }
+
         private void Ball_Paint(object sender, PaintEventArgs e)
         {
             DrawImage(e.Graphics);
@@ -26,7 +33,7 @@ namespace GiftFactory.Entities
 
         protected override void DrawImage(Graphics graphics)
         {
-            graphics.FillEllipse(new SolidBrush(Color.DarkCyan), 0, 0, Width, Height);
+            graphics.FillEllipse(BallColor, 0, 0, Width, Height);
         }
 
         public void MoveBall()
