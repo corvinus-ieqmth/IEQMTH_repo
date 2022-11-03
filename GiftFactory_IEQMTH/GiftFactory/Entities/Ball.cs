@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GiftFactory.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace GiftFactory.Entities
 {
-    public class Ball : Label
+    public class Ball : Toy
     {
         public Ball()
         {
@@ -23,7 +24,7 @@ namespace GiftFactory.Entities
             DrawImage(e.Graphics);
         }
 
-        protected void DrawImage(Graphics graphics)
+        protected override void DrawImage(Graphics graphics)
         {
             graphics.FillEllipse(new SolidBrush(Color.DarkCyan), 0, 0, Width, Height);
         }
