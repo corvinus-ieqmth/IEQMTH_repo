@@ -29,13 +29,52 @@ namespace ValueAtRisk
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dgw = new System.Windows.Forms.DataGridView();
+            this.dgw2 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw2)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgw
+            // 
+            this.dgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgw.Location = new System.Drawing.Point(34, 28);
+            this.dgw.Name = "dgw";
+            this.dgw.RowHeadersWidth = 51;
+            this.dgw.RowTemplate.Height = 24;
+            this.dgw.Size = new System.Drawing.Size(209, 321);
+            this.dgw.TabIndex = 0;
+            // 
+            // dgw2
+            // 
+            this.dgw2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgw2.Location = new System.Drawing.Point(293, 28);
+            this.dgw2.Name = "dgw2";
+            this.dgw2.RowHeadersWidth = 51;
+            this.dgw2.RowTemplate.Height = 24;
+            this.dgw2.Size = new System.Drawing.Size(376, 321);
+            this.dgw2.TabIndex = 1;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgw2);
+            this.Controls.Add(this.dgw);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgw)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgw2)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dgw;
+        private System.Windows.Forms.DataGridView dgw2;
     }
 }
 
