@@ -31,6 +31,7 @@ namespace ValueAtRisk
         {
             this.dgw = new System.Windows.Forms.DataGridView();
             this.dgw2 = new System.Windows.Forms.DataGridView();
+            this.button_Save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgw)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgw2)).BeginInit();
             this.SuspendLayout();
@@ -55,11 +56,22 @@ namespace ValueAtRisk
             this.dgw2.Size = new System.Drawing.Size(376, 321);
             this.dgw2.TabIndex = 1;
             // 
+            // button_Save
+            // 
+            this.button_Save.Location = new System.Drawing.Point(580, 393);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(75, 23);
+            this.button_Save.TabIndex = 2;
+            this.button_Save.Text = "Save";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_Save);
             this.Controls.Add(this.dgw2);
             this.Controls.Add(this.dgw);
             this.Name = "Form1";
@@ -75,6 +87,7 @@ namespace ValueAtRisk
 
         private System.Windows.Forms.DataGridView dgw;
         private System.Windows.Forms.DataGridView dgw2;
+        private System.Windows.Forms.Button button_Save;
     }
 }
 
